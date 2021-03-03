@@ -1,0 +1,50 @@
+plugins {
+    id 'base'
+}
+
+configurations{
+    amqRAR {
+        transitive = false
+    }
+}
+
+dependencies {
+    amqRAR 'org.apache.activemq:activemq-rar:5.16.0'
+}
+
+task getRAR(type: Copy) {
+    from configurations.amqRAR
+    into 'build/'
+}
+
+task copyEAR(type: Copy) {
+    from project(":ear").tasks.ear.archivePath
+    into 'build/'
+}
+
+task copyJAR(type: Copy) {
+    from project(":mdb").tasks.jar.archivePath
+    into 'build/'
+}
+
+
+task makeBootableJar(type: Exec){
+    dependsOn getRAR
+    dependsOn copyEAR
+    commandLine './mvnw', 'clean', 'wildfly-jar:package'
+}
+
+
+task mavenClean(type: Exec){
+    commandLine './mvnw', 'clean'
+}
+
+task unwrapRAR(type: Copy){
+    from zipTree(configurations.amqRAR.singleFile)
+    into file("${projectDir}/amqrar")
+}
+
+
+clean.dependsOn mavenClean
+build.dependsOn makeBootableJar
+

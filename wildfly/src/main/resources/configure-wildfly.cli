@@ -1,0 +1,9 @@
+##
+##Add in AMQ Module and configure a RAR.
+##
+/subsystem=resource-adapters/resource-adapter=AMQBroker:add(module=org.apache.amq-rar)
+/subsystem=resource-adapters/resource-adapter=AMQBroker/config-properties=ServerUrl/:add(value="${amq.broker.url}")
+/subsystem=resource-adapters/resource-adapter=AMQBroker/config-properties=UserName/:add(value="${amq.broker.userName}")
+/subsystem=resource-adapters/resource-adapter=AMQBroker/config-properties=Password/:add(value="${amq.broker.passWord}")
+/subsystem=ejb3:write-attribute(name=default-resource-adapter-name, value=AMQBroker)
+

@@ -1,0 +1,11 @@
+plugins {
+    id 'ear'
+}
+
+ear.archiveBaseName = 'Silvertip'
+
+dependencies {
+    deploy project(':mdb')
+    earlib project(':mdb')
+}
+
