@@ -1,5 +1,5 @@
 
-# Very Simple Bootable Wildfly with a Basic MDB in an EAR & & Hollowed Jar Connected to AMQ 5.x via  Moduled RAR
+# Very Simple Bootable Wildfly with a Basic MDB in an EAR & Hollowed Jar Connected to AMQ 5.x via  Moduled RAR
 
 ## Description
 Another bootable WF example.  
